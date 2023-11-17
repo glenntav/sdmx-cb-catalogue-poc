@@ -1,2 +1,2 @@
-# sdmx-cb-catalogue-poc
-SDMX Capacity Building catalogue PoC
+# sdmx.io website
+https://sdmx.io Hugo source code

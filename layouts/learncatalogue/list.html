@@ -1,0 +1,58 @@
+{{ define "main" }}
+
+
+<!--get the JSON catalogue from GitHub-->
+{{ $catalogue := getJSON "https://raw.githubusercontent.com/metadatatechnology/sdmx-elearning-catalogue/main/catalogue.json" }}  
+
+<!-- containers -->
+<section class="section" style="padding-bottom: 200px;">
+  <div class="container">
+
+      
+    <div class="row">
+      <div class="col-12">
+        <!-- event category list -->
+        <ul class="list-inline text-center filter-controls mb-5">
+          <li class="list-inline-item m-3 text-uppercase active" data-filter="all">{{ i18n "all" }}</li>
+          {{ $categories := slice }}
+          {{ range $catalogue.elearning.courses }}
+          {{ $categories = $categories | append .topic }}
+          {{ end }}
+          {{ range ( $categories | uniq ) }}
+          <li class="list-inline-item m-3 text-uppercase" data-filter="{{ . | urlize }}">{{ . | humanize }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+        
+      <!-- container list -->
+    <div class="row filtr-container">
+      <!-- event -->
+
+      <div class="col-md-12">
+          {{ range $catalogue.elearning.courses }}
+
+            <div data-category="{{ .topic | urlize }}" class="col-lg-4 col-sm-6 filtr-item">
+                <div class="card border-1 rounded-3 mb-5 hover-shadow">
+                  <div class="card-img position-relative text-center">
+                    <img class="card-img-top rounded-0" style="width:100%;" src="{{ .image | relURL }}" alt="{{ .title }}">
+                  </div>
+                  <div class="container-card-body">
+                    <!-- sponsor -->
+                    <p>
+                    <i class="list-inline-item mr-2 text-light"></i><i class="ti-user"></i> {{ .sponsor | markdownify }}
+                    </p>
+                    <h4 class="card-title"><a href="{{ .url | relURL }}">{{ .title }}</a></h4>
+                    <p>{{ .summary | truncate 100}}</p>
+                  </div>
+                </div>     
+            </div>
+
+          {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /containers -->
+{{ end }}
+

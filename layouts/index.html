@@ -1,0 +1,33 @@
+{{ define "main" }} {{ $data := index .Site.Data .Site.Language.Lang }}
+
+<!-- hero slider -->
+{{ if $data.homepage.slider.enable }} {{ with $data.homepage.slider }}
+<link rel="preload" href="{{ .bg_image | relURL }}" as="image">
+<section class="hero-section overlay bg-cover" data-background="{{ .bg_image | relURL }}">
+    <div class="container">
+        <div class="hero-slider">
+            <!-- slider item -->
+            {{ range .slider_item }}
+            <div class="hero-slider-item">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="text-white" data-animation-out="fadeOut{{.animation_out | title }}" data-delay-out=12 data-duration-in=".3" data-animation-in="fadeIn{{.animation_in | title }}" data-delay-in=".1">{{ .title | markdownify }}</h1>
+                        <p class="text-white mb-4" data-animation-out="fadeOut{{.animation_out | title }}" data-delay-out="12" data-duration-in=".3" data-animation-in="fadeIn{{.animation_in | title }}" data-delay-in=".1">{{ .content | markdownify }}</p>
+                        {{ if .button.enable }}
+                        <a href="{{ .button.link | relLangURL }}" target="_blank" rel="noopener" class="btn btn-primary" data-animation-out="fadeOut{{.animation_out | title }}" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeIn{{.animation_in | title }}" data-delay-in=".1">{{ .button.label }}</a>                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }} {{ end }}
+<!-- /hero slider -->
+
+
+
+<!-- about -->
+
+<!-- /about -->
+{{ end }}

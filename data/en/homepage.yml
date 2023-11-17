@@ -1,0 +1,16 @@
+################################# Slider #####################################
+slider:
+  enable : true
+  bg_image : "images/backgrounds/page-title.webp"
+  slider_item:
+    - title : "SDMX capacity building inventory PoC"
+      animation_in : "none"
+      animation_out : "none"
+      content: "Proof of concept for publishing the centralised SDMX capacity building inventory managed on GitHub as a JSON or YAML file"
+      # available animation : left, right, up, down
+      button:
+        enable : true
+        label : "See the JSON"
+        link : "https://github.com/glenntav/sdmx-elearning-catalogue/blob/main/catalogue.json"
+
+
